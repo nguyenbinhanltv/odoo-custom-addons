@@ -41,5 +41,5 @@ class employees_management(models.Model):
     employee_address = fields.Text(string="Địa chỉ liên hệ")
 
     active = fields.Boolean(string="Active")
-    emmployee_image = fields.Image(max_width=100, max_height=100)
+    emmployee_image = fields.Image(string="")
 
