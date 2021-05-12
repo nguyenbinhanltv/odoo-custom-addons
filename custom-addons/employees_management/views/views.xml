@@ -1,0 +1,94 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="employees_management.list">
+      <field name="name">employees_management list</field>
+      <field name="model">employees_management.employees_management</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="employee_full_name"/>
+          <field name="employee_card_id"/>
+          <field name="employee_gender"/>
+          <field name="employee_nationality"/>
+          <field name="employee_phone_number"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="employees_management.form">
+      <field name="name">employees_management list</field>
+      <field name="model">employees_management.employees_management</field>
+      <field name="arch" type="xml">
+        <form string="Idea form">
+          <group colspan="4">
+            <group>
+              <separator string="Thông tin cá nhân" colspan="2"/>
+              <field name="employee_full_name"/>
+              <field name="employee_bdate"/>
+              <field name="employee_gender"/>
+              <field name="employee_birthplace"/>
+            </group>
+            <group colspan="2">
+              <separator string="Dates" colspan="2"/>
+              <field name="employee_card_id"/>
+              <field name="employee_card_place"/>
+              <field name="employee_card_date"/>
+            </group>
+            <group colspan="2" col="2">
+              <separator string="Dates" colspan="2"/>
+              <field name="employee_standard"/>
+              <field name="employee_ethnic_group"/>
+              <field name="employee_relegion"/>
+            </group>
+            <group colspan="2" col="2">
+              <separator string="Dates" colspan="2"/>
+              <field name="employee_weight"/>
+              <field name="employee_height"/>
+              <field name="employee_native_place"/>
+              <field name="employee_nationality"/>
+              <field name="employee_marital_status"/>
+            </group>
+
+<!--            <notebook colspan="4">-->
+<!--                <page string="Description">-->
+<!--                    <field name="employee_birthplace" nolabel="1"/>-->
+<!--                </page>-->
+<!--            </notebook>-->
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="employees_management.action_window">
+      <field name="name">employees_management window</field>
+      <field name="res_model">employees_management.employees_management</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <record model="ir.actions.server" id="employees_management.action_server">
+      <field name="name">employees_management server</field>
+      <field name="model_id" ref="model_employees_management_employees_management"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Employees Management" id="employees_management.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Menu 1" id="employees_management.menu_1" parent="employees_management.menu_root"/>
+    <menuitem name="Menu 2" id="employees_management.menu_2" parent="employees_management.menu_root"/>
+    <!-- actions -->
+    <menuitem name="List" id="employees_management.menu_1_list" parent="employees_management.menu_1"
+              action="employees_management.action_window"/>
+    <menuitem name="Server to list" id="employees_management" parent="employees_management.menu_2"
+              action="employees_management.action_server"/>
+  </data>
+</odoo>
