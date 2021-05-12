@@ -20,41 +20,80 @@
       <field name="model">employees_management.employees_management</field>
       <field name="arch" type="xml">
         <form string="Idea form">
-          <group colspan="4">
+          <sheet>
             <group>
-              <separator string="Thông tin cá nhân" colspan="2"/>
-              <field name="employee_full_name"/>
-              <field name="employee_bdate"/>
-              <field name="employee_gender"/>
-              <field name="employee_birthplace"/>
-            </group>
-            <group colspan="2">
-              <separator string="Dates" colspan="2"/>
-              <field name="employee_card_id"/>
-              <field name="employee_card_place"/>
-              <field name="employee_card_date"/>
-            </group>
-            <group colspan="2" col="2">
-              <separator string="Dates" colspan="2"/>
-              <field name="employee_standard"/>
-              <field name="employee_ethnic_group"/>
-              <field name="employee_relegion"/>
-            </group>
-            <group colspan="2" col="2">
-              <separator string="Dates" colspan="2"/>
-              <field name="employee_weight"/>
-              <field name="employee_height"/>
-              <field name="employee_native_place"/>
-              <field name="employee_nationality"/>
-              <field name="employee_marital_status"/>
-            </group>
+              <group>
+                <separator string="Thông tin cá nhân" colspan="2"/>
+                <field name="employee_full_name"/>
+                <field name="employee_bdate"/>
+                <field name="employee_gender"/>
+                <field name="employee_birthplace"/>
+              </group>
+              <group>
+                <field name="emmployee_image" widget="image"/>
+              </group>
+              <group>
+                <separator string="Dates" colspan="2"/>
+                <field name="employee_card_id"/>
+                <field name="employee_card_place"/>
+                <field name="employee_card_date"/>
+              </group>
+              <group>
+                <separator string="Dates" colspan="2"/>
+                <field name="employee_standard"/>
+                <field name="employee_ethnic_group"/>
+                <field name="employee_relegion"/>
+              </group>
+              <group>
+                <separator string="Dates" colspan="2"/>
+                <field name="employee_weight"/>
+                <field name="employee_height"/>
+                <field name="employee_native_place"/>
+                <field name="employee_nationality"/>
+                <field name="employee_marital_status"/>
+              </group>
 
-<!--            <notebook colspan="4">-->
-<!--                <page string="Description">-->
-<!--                    <field name="employee_birthplace" nolabel="1"/>-->
-<!--                </page>-->
-<!--            </notebook>-->
-          </group>
+              <notebook colspan="4">
+                <page string="Thông tin việc làm">
+                  <field name="employee_birthplace" nolabel="1"/>
+                </page>
+                <page string="Thông tin riêng tư">
+                  <group>
+                    <group string="Liên hệ cá nhân">
+                      <field name="employee_landline_phone_number"/>
+                      <field name="employee_phone_number"/>
+                      <field name="employee_email"/>
+                      <field name="employee_permanent_residence"/>
+                      <field name="employee_address"/>
+                    </group>
+                    <group string="Quyền công dân">
+                      <field name="employee_card_id"/>
+                      <field name="employee_card_place"/>
+                      <field name="employee_card_date"/>
+                      <field name="employee_bdate"/>
+                      <field name="employee_gender"/>
+                      <field name="employee_birthplace"/>
+                      <field name="employee_native_place"/>
+                      <field name="employee_nationality"/>
+                    </group>
+                    <group string="Tình trạng hôn nhân">
+                      <field name="employee_marital_status"/>
+                    </group>
+                    <group string="Cơ thể">
+                      <field name="employee_weight"/>
+                      <field name="employee_height"/>
+                    </group>
+                    <group string="Giáo dục">
+                      <field name="employee_standard"/>
+                      <field name="employee_ethnic_group"/>
+                      <field name="employee_relegion"/>
+                    </group>
+                  </group>
+                </page>
+                <page string="Cài đặt"></page>
+              </notebook>
+            </group>
+          </sheet>
         </form>
       </field>
     </record>
