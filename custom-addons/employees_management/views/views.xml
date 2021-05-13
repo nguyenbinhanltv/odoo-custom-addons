@@ -6,7 +6,7 @@
       <field name="model">employees_management.employees_management</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="employee_full_name"/>
+          <field name="name"/>
           <field name="employee_card_id"/>
           <field name="employee_gender"/>
           <field name="employee_nationality"/>
@@ -24,38 +24,29 @@
             <group>
               <group>
                 <separator string="Thông tin cá nhân" colspan="2"/>
-                <field name="employee_full_name"/>
-                <field name="employee_bdate"/>
-                <field name="employee_gender"/>
-                <field name="employee_birthplace"/>
+                <field name="name"/>
+                <field name="employee_work_email"/>
+                <field name="employee_work_phone"/>
+                <field name="active"/>
               </group>
               <group>
                 <field name="emmployee_image" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>
               </group>
-              <group>
-                <separator string="Dates" colspan="2"/>
-                <field name="employee_card_id"/>
-                <field name="employee_card_place"/>
-                <field name="employee_card_date"/>
-              </group>
-              <group>
-                <separator string="Dates" colspan="2"/>
-                <field name="employee_standard"/>
-                <field name="employee_ethnic_group"/>
-                <field name="employee_relegion"/>
-              </group>
-              <group>
-                <separator string="Dates" colspan="2"/>
-                <field name="employee_weight"/>
-                <field name="employee_height"/>
-                <field name="employee_native_place"/>
-                <field name="employee_nationality"/>
-                <field name="employee_marital_status"/>
-              </group>
-
               <notebook colspan="4">
                 <page string="Thông tin việc làm">
-                  <field name="employee_birthplace" nolabel="1"/>
+                  <group>
+                    <group string="Thông tin nơi làm việc">
+                      <field name="employee_id"/>
+                      <field name="employee_workplace"/>
+                      <field name="employee_office"/>
+                      <field name="employee_work_date"/>
+                      <field name="employee_contract_type"/>
+                    </group>
+                    <group string="Ngày hiệu lực hợp đồng">
+                      <field name="employee_from_date"/>
+                      <field name="employee_to_date"/>
+                    </group>
+                  </group>
                 </page>
                 <page string="Thông tin riêng tư">
                   <group>
@@ -89,6 +80,50 @@
                       <field name="employee_relegion"/>
                     </group>
                   </group>
+                  <group>
+                    <group string="Thông tin về gia đình" colspan="4">
+                      <field name="employee_families"/>
+                    </group>
+                  </group>
+                </page>
+                <page string="Thông tin quá trình học tập">
+                  <group>
+                    <group string="Quá trình học tập">
+                      <field name="employee_standard_level"/>
+                      <field name="employee_university_name"/>
+                      <field name="employee_industry_change"/>
+                      <field name="employee_edu_from_date"/>
+                      <field name="employee_edu_to_date"/>
+                    </group>
+                    <group string="Trình độ ngoại ngữ">
+                      <field name="employee_language_list" widget="many2many_tags"/>
+                      <field name="employee_language_speak"/>
+                      <field name="employee_language_write"/>
+                      <field name="employee_language_listen"/>
+                    </group>
+                    <group string="Sử dụng tốt các phần mềm">
+                      <field name="employee_software_skills" widget="many2many_tags"/>
+                    </group>
+                    <group string="Kĩ năng đặc biệt">
+                      <field name="employee_special_skills"/>
+                    </group>
+                    <group string="Họ hàng hoặc bạn bè đang làm việc tại tài ký">
+                      <field name="employee_friend_id"/>
+                    </group>
+                    <group string="Người tham khảo">
+                      <field name="employee_friend_ref_id"/>
+                    </group>
+                    <group string="Làm sao biết công việc này">
+                      <field name="employee_list_reason"/>
+                      <field name="employee_salary_min"/>
+                      <field name="employee_salary_want"/>
+                      <field name="employee_can_work"/>
+                    </group>
+                    <group string="Thông tin bổ sung">
+                      <field name="employee_health"/>
+                      <field name="employee_blood"/>
+                    </group>
+                  </group>
                 </page>
                 <page string="Cài đặt"></page>
               </notebook>
@@ -100,7 +135,7 @@
 
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="employees_management.action_window">
-      <field name="name">employees_management window</field>
+      <field name="name">Nhân sự</field>
       <field name="res_model">employees_management.employees_management</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -120,14 +155,23 @@
     </record>
 
     <!-- Top menu item -->
-    <menuitem name="Employees Management" id="employees_management.menu_root"/>
+    <menuitem name="Quản lý nhân sự" id="employees_management.menu_root"/>
     <!-- menu categories -->
-    <menuitem name="Menu 1" id="employees_management.menu_1" parent="employees_management.menu_root"/>
-    <menuitem name="Menu 2" id="employees_management.menu_2" parent="employees_management.menu_root"/>
-    <!-- actions -->
-    <menuitem name="List" id="employees_management.menu_1_list" parent="employees_management.menu_1"
-              action="employees_management.action_window"/>
-    <menuitem name="Server to list" id="employees_management" parent="employees_management.menu_2"
-              action="employees_management.action_server"/>
+    <menuitem name="Menu" id="employees_management.list_items_menu" parent="employees_management.menu_root"/>
+    <menuitem name="Nhân sự" id="employees_management.list" parent="employees_management.list_items_menu"
+    action="employees_management.action_window"/>
+    <menuitem name="Server" id="employees_management.server" parent="employees_management.list_items_menu"
+    action="employees_management.action_server"/>
+    <menuitem name="Gia đình nhân viên" id="employees_management_employee_family" parent="employees_management.list_items_menu"
+    action="employee_family_action_window"/>
+    <menuitem name="Ngôn ngữ" id="employees_management_employee_language" parent="employees_management.list_items_menu"
+    action="employee_language_action_window"/>
+    <menuitem name="Phần mềm" id="employees_management_employee_software" parent="employees_management.list_items_menu"
+    action="employee_software_action_window"/>
+    <menuitem name="Bạn bè (họ hàng)" id="employees_management_employee_friend" parent="employees_management.list_items_menu"
+    action="employee_friend_action_window"/>
+    <menuitem name="Người tham khảo" id="employees_management_employee_friend_ref" parent="employees_management.list_items_menu"
+    action="employee_friend_ref_action_window"/>
+
   </data>
 </odoo>

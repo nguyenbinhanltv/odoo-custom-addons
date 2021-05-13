@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="employee_friend_ref_list" model="ir.ui.view">
+            <field name="name">employee_friend_ref list</field>
+            <field name="model">employees_management.employee_friend_ref</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="employee_friend_ref_form">
+              <field name="name">employee_friend_ref form</field>
+              <field name="model">employees_management.employee_friend_ref</field>
+              <field name="arch" type="xml">
+                    <form>
+                      <group>
+                        <group string="Thông tin người tham khảo">
+                          <field name="name"/>
+                          <field name="ref_position"/>
+                          <field name="ref_relationship"/>
+                        </group>
+                        <group string="Địa chỉ liên lạc">
+                          <field name="ref_company"/>
+                          <field name="ref_company_address"/>
+                          <field name="ref_phone_number"/>
+                          <field name="ref_time_rel"/>
+                        </group>
+                      </group>
+                    </form>
+              </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_friend_ref_action_window">
+          <field name="name">Người tham khảo</field>
+          <field name="res_model">employees_management.employee_friend_ref</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

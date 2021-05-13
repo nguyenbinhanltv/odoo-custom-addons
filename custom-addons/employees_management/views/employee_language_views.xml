@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="employee_language_list" model="ir.ui.view">
+            <field name="name">employee_language list</field>
+            <field name="model">employees_management.employee_language</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="employee_language_form">
+              <field name="name">employee_language form</field>
+              <field name="model">employees_management.employee_language</field>
+              <field name="arch" type="xml">
+                    <form>
+                      <group>
+                        <field name="name" />
+                      </group>
+                    </form>
+              </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_language_action_window">
+          <field name="name">Ngôn ngữ</field>
+          <field name="res_model">employees_management.employee_language</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

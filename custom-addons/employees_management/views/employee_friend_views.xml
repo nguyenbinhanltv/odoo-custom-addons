@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="employee_friend_list" model="ir.ui.view">
+            <field name="name">employee_friend list</field>
+            <field name="model">employees_management.employee_friend</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="employee_friend_form">
+              <field name="name">employee_friend form</field>
+              <field name="model">employees_management.employee_friend</field>
+              <field name="arch" type="xml">
+                    <form>
+                      <group>
+                        <group string="Thông tin bạn bè (họ hàng)">
+                          <field name="name"/>
+                          <field name="friend_place_work"/>
+                          <field name="friend_relationship"/>
+                          <field name="friend_company"/>
+                          <field name="friend_company_address"/>
+                          <field name="friend_company_position"/>
+                        </group>
+                        <group string="Thời gian làm việc">
+                          <field name="friend_company_from_date"/>
+                          <field name="friend_company_to_date"/>
+                          <field name="currency_id"/>
+                          <field name="friend_salary"/>
+                          <field name="friend_reason_leave"/>
+                        </group>
+                      </group>
+                    </form>
+              </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_friend_action_window">
+          <field name="name">Bạn bè (họ hàng)</field>
+          <field name="res_model">employees_management.employee_friend</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

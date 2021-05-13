@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="employee_family_list">
+          <field name="name">employees_family list</field>
+          <field name="model">employees_management.employee_family</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="bdate"/>
+              <field name="job"/>
+              <field name="phone_number"/>
+              <field name="employee_id"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="employee_family_form">
+          <field name="name">employees_family form</field>
+          <field name="model">employees_management.employee_family</field>
+          <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string="Thông tin cá nhân">
+                        <field name="employee_id"/>
+                        <field name="name"/>
+                        <field name="bdate"/>
+                        <field name="relationship"/>
+                    </group>
+                    <group string="Thông tin liên lạc">
+                        <field name="phone_number"/>
+                        <field name="address"/>
+                        <field name="job"/>
+                        <field name="place_work"/>
+                    </group>
+                </group>
+            </form>
+          </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_family_action_window">
+            <field name="name">Gia đình nhân viên</field>
+            <field name="res_model">employees_management.employee_family</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
