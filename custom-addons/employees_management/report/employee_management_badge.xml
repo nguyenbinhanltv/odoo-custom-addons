@@ -7,7 +7,7 @@
         <field name="report_name">employees_management.print_employee_badge</field>
         <field name="report_file">employees_management.print_employee_badge</field>
         <field name="print_report_name">'Print Badge - %s' % (object.name).replace('/', '')</field>
-        <field name="binding_model_id" ref="employees_management"/>
+        <field name="binding_model_id" ref="model_employees_management_employees_management"/>
         <field name="binding_type">report</field>
     </record>
 
