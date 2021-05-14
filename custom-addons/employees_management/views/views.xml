@@ -16,10 +16,10 @@
     </record>
 
     <record model="ir.ui.view" id="employees_management.form">
-      <field name="name">employees_management list</field>
+      <field name="name">employees_management form</field>
       <field name="model">employees_management.employees_management</field>
       <field name="arch" type="xml">
-        <form string="Idea form">
+        <form>
           <sheet>
             <group>
               <group>
@@ -125,6 +125,19 @@
                     </group>
                   </group>
                 </page>
+                <page string="Thông tin khác">
+                  <group>
+                    <group string="Thông tin bảo hiểm xã hội">
+                      <field name="employee_bhxh_id"/>
+                    </group>
+                    <group string="Thông tin ngân hàng">
+                      <field name="bank_account_name"/>
+                      <field name="bank_id"/>
+                      <field name="bank_name"/>
+                      <field name="bank_branch_name"/>
+                    </group>
+                  </group>
+                </page>
                 <page string="Cài đặt"></page>
               </notebook>
             </group>
@@ -137,7 +150,7 @@
     <record model="ir.actions.act_window" id="employees_management.action_window">
       <field name="name">Nhân sự</field>
       <field name="res_model">employees_management.employees_management</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <!-- server action to the one above -->
@@ -172,6 +185,10 @@
     action="employee_friend_action_window"/>
     <menuitem name="Người tham khảo" id="employees_management_employee_friend_ref" parent="employees_management.list_items_menu"
     action="employee_friend_ref_action_window"/>
+    <menuitem name="Bảo hiểm xã hội" id="employees_management_employee_bhxh" parent="employees_management.list_items_menu"
+    action="employee_bhxh_action_window"/>
+    <menuitem name="Hộ gia đình" id="employees_management_employee_bhxh" parent="employees_management.list_items_menu"
+    action="employee_bhxh_family_action_window"/>
 
   </data>
 </odoo>

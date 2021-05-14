@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="employee_bhxh_family_list">
+          <field name="name">employees_bhxh_family list</field>
+          <field name="model">employees_management.employee_bhxh_family</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="bdate"/>
+              <field name="phone_number"/>
+              <field name="bhxh_id"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="employee_bhxh_family_form">
+          <field name="name">employees_bhxh_family form</field>
+          <field name="model">employees_management.employee_bhxh_family</field>
+          <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string="Thông tin cá nhân">
+                        <field name="name"/>
+                        <field name="bdate"/>
+                        <field name="relationship"/>
+                        <field name="gender"/>
+                    </group>
+                    <group string="Thông tin liên lạc">
+                        <field name="phone_number"/>
+                        <field name="address"/>
+                        <field name="current_address"/>
+                    </group>
+                    <group string="Thông tin BHXH">
+                        <field name="name_head"/>
+                        <field name="reg_book_id"/>
+                        <field name="bhxh_book_id"/>
+                        <field name="place_bdate_cert"/>
+                        <field name="card_id"/>
+                        <field name="bhxh_id"/>
+                        <field name="note"/>
+                    </group>
+                </group>
+            </form>
+          </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_bhxh_family_action_window">
+            <field name="name">Thành viên hộ gia đình</field>
+            <field name="res_model">employees_management.employee_bhxh_family</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+    </data>
+</odoo>

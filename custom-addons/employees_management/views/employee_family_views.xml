@@ -22,8 +22,8 @@
             <form>
                 <group>
                     <group string="Thông tin cá nhân">
-                        <field name="employee_id"/>
                         <field name="name"/>
+                        <field name="employee_id"/>
                         <field name="bdate"/>
                         <field name="relationship"/>
                     </group>
@@ -41,7 +41,7 @@
         <record model="ir.actions.act_window" id="employee_family_action_window">
             <field name="name">Gia đình nhân viên</field>
             <field name="res_model">employees_management.employee_family</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>
     </data>
 </odoo>

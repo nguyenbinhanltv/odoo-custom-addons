@@ -36,7 +36,7 @@
         <record model="ir.actions.act_window" id="employee_friend_ref_action_window">
           <field name="name">Người tham khảo</field>
           <field name="res_model">employees_management.employee_friend_ref</field>
-          <field name="view_mode">tree,form</field>
+          <field name="view_mode">kanban,tree,form</field>
         </record>
     </data>
 </odoo>

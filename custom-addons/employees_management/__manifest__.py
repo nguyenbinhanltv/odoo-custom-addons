@@ -25,12 +25,15 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/employee_bhxh_family_views.xml',
+        'views/employee_bhxh_views.xml',
         'views/employee_friend_ref_views.xml',
         'views/employee_friend_views.xml',
         'views/employee_software_views.xml',
         'views/employee_language_views.xml',
         'views/employee_family_views.xml',
         'views/views.xml',
+        'report/employee_management_badge.xml',
         'views/templates.xml'
     ],
     # only loaded in demonstration mode

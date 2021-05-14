@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
@@ -48,7 +49,9 @@ class employees_management(models.Model):
     employee_work_phone = fields.Char(string="Điện thoại công ty")
 
     # Thông tin nhân viên
-    employee_id = fields.Char(string="Mã nhân viên", help="Định dạng XXxxx, XX: Năm vào làm việc, xxx: số thứ tự tăng dần bắt đầu bằng 001 và sẽ reset theo năm tài chính")
+    employee_id = fields.Char(string="Mã nhân viên",
+                              help="Định dạng XXxxx, XX: Năm vào làm việc, xxx: số thứ tự tăng dần bắt đầu bằng 001 và sẽ reset theo năm tài chính",
+                              readonly=True)
     employee_workplace = fields.Char(string="Vị trí công tác")
     employee_office = fields.Char(string="Phòng ban công tác")
     employee_work_date = fields.Date(string="Ngày vào làm")
@@ -121,6 +124,18 @@ class employees_management(models.Model):
     employee_health = fields.Text(string="Tình trạng sức khỏe")
     employee_blood = fields.Char(string="Nhóm máu")
 
+    # BHXH
+    employee_bhxh_id = fields.Reference([
+        ('employees_management.employee_bhxh', 'Bảo hiểm xã hội')
+    ], string="BHXH")
+
+    # Bank
+    bank_account_name = fields.Char(string="Chủ tài khoản")
+    bank_id = fields.Char(string="Số tài khoản")
+    bank_name = fields.Char(string="Tên ngân hàng")
+    bank_branch_name = fields.Char(string="Tên chi nhánh")
+
+
     @api.constrains('employee_landline_phone_number',
                     'employee_card_id',
                     'employee_phone_number',
@@ -134,7 +149,22 @@ class employees_management(models.Model):
             else:
                 raise ValidationError("Các trường nhập số sai định dạng")
 
+    @api.constrains('name', 'bank_account_name')
+    def _check_name(self):
+        for record in self:
+            if record.name == record.bank_account_name:
+                return True
+            else:
+                raise ValidationError("Tên tài khoản phải trùng với tên nhân viên")
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        emp = super(employees_management, self).create(vals_list)
+        for record in emp:
+            year = str(datetime.datetime.now().year)
+            id = str(record.id)
+            while(len(id) < 3):
+                id = '0' + id
+            record["employee_id"] = year[slice(2, 4)] + id
 
-
-
+        return emp

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="employee_bhxh_list">
+          <field name="name">employees_bhxh list</field>
+          <field name="model">employees_management.employee_bhxh</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="bhxh_card_id"/>
+              <field name="bhxh_family_id"/>
+              <field name="bhxh_price"/>
+              <field name="bhxh_place_res"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="employee_bhxh_form">
+          <field name="name">employees_bhxh form</field>
+          <field name="model">employees_management.employee_bhxh</field>
+          <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string="Thông tin tham gia bảo hiểm xã hội">
+                        <field name="name"/>
+                        <field name="bhxh_card_id"/>
+                        <field name="bhxh_family_id"/>
+                        <field name="bhxh_price"/>
+                        <field name="bhxh_place_res"/>
+                    </group>
+                    <group string="Thành viên hộ gia đình" colspan="4">
+                        <field name="families_list"/>
+                    </group>
+                </group>
+            </form>
+          </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_bhxh_action_window">
+            <field name="name">Bảo hiểm xã hội</field>
+            <field name="res_model">employees_management.employee_bhxh</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
